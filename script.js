@@ -2,89 +2,89 @@ document.getElementById("submit").addEventListener("click", function () {
     const basePrice = 100;
 
     const education = document.getElementById("education").value;
-    let educationCoefficient = 1;
+    let educoef = 1;
 
     switch (education) {
         case "bachelor":
-            educationCoefficient = 1.5;
+            educoef = 1.5;
             break;
         case "college":
-            educationCoefficient = 1.2;
+            educoef = 1.2;
             break;
         case "high_school":
-            educationCoefficient = 1.05;
+            educoef = 1.05;
             break;
         case "middle_school":
-            educationCoefficient = 0.9;
+            educoef = 0.9;
             break;
     }
 
     const networth = document.getElementById("networth").value;
-    let networthCoefficient = 1;
+    let netcoef = 1;
 
     switch (networth) {
         case "upper_class":
-            networthCoefficient = 2;
+            netcoef = 2;
             break;
         case "middle_class":
-            networthCoefficient = 1.5;
+            netcoef = 1.5;
             break;
         case "lower_class":
-            networthCoefficient = 1.2;
+            netcoef  = 1.2;
             break;
     }
 
     const caste = document.getElementById("caste").value;
-    let castePrice = 0;
+    let castecost = 0;
 
     switch (caste) {
         case "brahmin":
-            castePrice = 100;
+            castecost = 100;
             break;
         case "kshatriya":
-            castePrice = 50;
+            castecost = 50;
             break;
         case "vaishya":
-            castePrice = 20;
+            castecost = 20;
             break;
         case "shudra":
-            castePrice = 10;
+            castecost = 10;
             break;
         case "varna":
-            castePrice = -50;
+            castecost = -50;
             break;
     }
 
-    let skillsPrice = 0;
-        if (document.getElementById("music").checked) skillsPrice += 10;
-        if (document.getElementById("cook").checked) skillsPrice += 20;
-        if (document.getElementById("easygoing").checked) skillsPrice += 15;
-        if (document.getElementById("sing").checked) skillsPrice += 10;
+    let skillcost = 0;
+        if (document.getElementById("music").checked) skillcost += 10;
+        if (document.getElementById("cook").checked) skillcost += 20;
+        if (document.getElementById("easygoing").checked) skillcost += 15;
+        if (document.getElementById("sing").checked) skillcost += 10;
 
-    const ageInputs = document.getElementsByName("age");
-    let ageCoefficient = 1;
+    const age = document.getElementsByName("age");
+    let agecoef = 1;
 
-    for (const input of ageInputs) {
+    for (const input of age) {
         if (input.checked) {
-            ageCoefficient = parseFloat(input.value);
+            agecoef = parseFloat(input.value);
             break;
         }
     }
 
     let finalPrice = basePrice;
 
-    finalPrice *= educationCoefficient;
-    finalPrice *= networthCoefficient;
-    finalPrice += castePrice;
-    finalPrice += skillsPrice;
-    finalPrice *= ageCoefficient;
+    finalPrice *= educoef;
+    finalPrice *= netcoef;
+    finalPrice += castecost;
+    finalPrice += skillcost;
+    finalPrice *= agecoef;
 
-    let reputationModifier = 0;
-    if (document.getElementById("gossparents").checked) reputationModifier += finalPrice * 0.15;
-    if (document.getElementById("gosscharacter").checked) reputationModifier += finalPrice * 0.1;
-    if (document.getElementById("gossgeneral").checked) reputationModifier += 20;
+    let reputationcoef = 0;
+    if (document.getElementById("gossparents").checked) reputationcoef += finalPrice * 0.15;
+    if (document.getElementById("gosscharacter").checked) reputationcoef += finalPrice * 0.1;
+    if (document.getElementById("gossgeneral").checked) reputationcoef += 20;
 
-    finalPrice -= reputationModifier;
+    finalPrice -= reputationcoef;
 
     document.getElementById("result").innerText = `Price: $${finalPrice.toFixed(2)}`;
 });
